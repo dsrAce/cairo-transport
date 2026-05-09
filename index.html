@@ -178,6 +178,593 @@ footer span { color: var(--accent); }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--surface); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ════════════════════════════════════════════════════════════
+   INDEX / HOME — EDITORIAL REDESIGN
+   ════════════════════════════════════════════════════════════ */
+
+:root {
+  --hot:  #FF5E3A;   /* vivid coral */
+  --mint: #00F5D4;   /* electric mint */
+  --pop:  #FEE440;   /* electric yellow */
+  --rose: #F15BB5;   /* hot pink */
+  --iris: #9B5DE5;   /* vibrant purple */
+  --teal: #4ECDC4;   /* clean teal */
+  --bone: #F1EAD6;   /* warm off-white */
+  --ink:  #0A0A0F;   /* near-black */
+  --display: 'Syne', sans-serif;
+}
+
+/* Wider container only for the redesigned index */
+#home > .container { max-width: 1500px; padding: 0; }
+
+#home .idx { padding: 32px 40px 80px; position: relative; }
+
+/* dotted grid backdrop — only on index */
+#home .idx::before {
+  content:''; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(241,234,214,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none; z-index: 0;
+  mask-image: linear-gradient(180deg, black 0%, black 70%, transparent 100%);
+}
+#home .idx > * { position: relative; z-index: 1; }
+
+@media (max-width: 700px) { #home .idx { padding: 20px 18px 60px; } }
+
+/* ─── METADATA STRIP ─── */
+.idx-meta {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 20px; align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 56px;
+}
+.idx-meta b { color: var(--bone); font-weight: 500; letter-spacing: 1.5px; }
+.idx-meta .dash { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+.idx-meta .geo { display: inline; }
+@media (max-width: 700px) {
+  .idx-meta { grid-template-columns: auto 1fr auto; gap: 12px; font-size: 9.5px; letter-spacing: 1.5px; }
+  .idx-meta .geo { display: none; }
+}
+.idx-meta .live::before {
+  content: ''; display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mint); margin-right: 6px;
+  animation: idxPulse 1.6s ease-in-out infinite;
+}
+@keyframes idxPulse { 0%,100%{ opacity: 1; } 50% { opacity: 0.25; } }
+
+/* ─── HERO ─── */
+.idx-hero {
+  position: relative;
+  padding: 8px 0 64px;
+  margin-bottom: 64px;
+}
+
+.idx-eyebrow {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--mono); font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--mint);
+  margin-bottom: 36px;
+  text-transform: uppercase;
+}
+.idx-eyebrow::before {
+  content:''; width: 36px; height: 2px;
+  background: var(--mint);
+}
+
+.idx-headline {
+  font-family: var(--display);
+  font-size: clamp(48px, 9.5vw, 142px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--bone);
+}
+.idx-headline .row { display: block; }
+.idx-headline em {
+  font-style: italic;
+  color: var(--hot);
+  position: relative;
+  display: inline-block;
+}
+.idx-headline em::before {
+  content:''; position: absolute;
+  left: -2%; right: -2%;
+  bottom: 8%; height: 22%;
+  background: var(--pop);
+  z-index: -1;
+  transform: skewX(-12deg);
+  opacity: 0.85;
+}
+.idx-headline .mint { color: var(--mint); font-style: italic; }
+.idx-headline .num {
+  color: var(--bone);
+  font-family: var(--mono);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.62em;
+  letter-spacing: -0.02em;
+  vertical-align: 0.06em;
+}
+.idx-headline .dot {
+  display: inline-block;
+  width: 0.13em; height: 0.13em;
+  border-radius: 50%;
+  background: var(--hot);
+  vertical-align: 0.18em;
+  margin: 0 0.04em;
+}
+
+.idx-hero-bottom {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 56px;
+  margin-top: 56px;
+  align-items: end;
+}
+@media (max-width: 850px) {
+  .idx-hero-bottom { grid-template-columns: 1fr; gap: 32px; }
+}
+.idx-blurb {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--bone);
+  max-width: 540px;
+  padding-left: 22px;
+  border-left: 3px solid var(--hot);
+}
+.idx-blurb b {
+  color: var(--bone); font-weight: 700;
+  background: linear-gradient(transparent 62%, rgba(255,94,58,0.32) 62%);
+  padding: 0 3px;
+}
+.idx-blurb i {
+  font-style: normal;
+  color: var(--mint);
+  font-family: var(--mono);
+  font-size: 0.95em;
+}
+
+.idx-cta-stack {
+  display: flex; flex-direction: column; gap: 14px;
+  align-items: flex-start;
+}
+.idx-cta-btn {
+  display: inline-flex; align-items: center; gap: 16px;
+  background: var(--mint);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  padding: 18px 26px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  position: relative;
+}
+.idx-cta-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--hot);
+}
+.idx-cta-btn:focus { outline: none; box-shadow: 4px 4px 0 var(--hot); }
+.idx-cta-btn .arr { width: 20px; height: 12px; }
+.idx-cta-foot {
+  font-family: var(--mono); font-size: 10px;
+  color: var(--muted); letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: inline-flex; gap: 10px; align-items: center;
+}
+.idx-cta-foot::before { content:'↳'; color: var(--hot); }
+
+/* hero floating shapes */
+.idx-shape { position: absolute; pointer-events: none; }
+.idx-shape.s-circle {
+  top: -8px; right: 2%;
+  width: 200px; height: 200px;
+  border: 2px solid var(--iris);
+  border-radius: 50%;
+  animation: idxFloat 14s ease-in-out infinite;
+}
+.idx-shape.s-tri {
+  top: 38%; right: 10%;
+  width: 64px; height: 56px;
+  color: var(--pop);
+  animation: idxSpin 22s linear infinite;
+}
+.idx-shape.s-plus {
+  top: 18%; right: 28%;
+  width: 44px; height: 44px;
+  color: var(--rose);
+  animation: idxSpin 18s linear infinite reverse;
+}
+.idx-shape.s-bars {
+  bottom: 18%; right: -4px;
+  width: 72px; height: 72px;
+  color: var(--mint); opacity: 0.55;
+}
+.idx-shape.s-zigzag {
+  bottom: 4%; left: 36%;
+  width: 96px; height: 18px;
+  color: var(--pop); opacity: 0.7;
+}
+.idx-shape.s-ring {
+  bottom: 40%; left: -3%;
+  width: 90px; height: 90px;
+  border: 1px dashed var(--mint);
+  border-radius: 50%;
+  animation: idxSpin 28s linear infinite;
+}
+@keyframes idxFloat {
+  0%,100% { transform: translate(0,0); }
+  50% { transform: translate(-10px, 8px); }
+}
+@keyframes idxSpin { to { transform: rotate(360deg); } }
+
+@media (max-width: 700px) {
+  .idx-shape.s-circle { width: 130px; height: 130px; right: -20px; }
+  .idx-shape.s-tri, .idx-shape.s-plus { display: none; }
+}
+
+/* ─── STATS BAND ─── */
+.idx-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--bone);
+  border-bottom: 2px solid var(--bone);
+  margin-bottom: 96px;
+}
+@media (max-width: 850px) {
+  .idx-stats { grid-template-columns: repeat(2, 1fr); }
+  .idx-stat:nth-child(2) { border-right: none !important; }
+  .idx-stat:nth-child(1), .idx-stat:nth-child(2) { border-bottom: 1px solid var(--border); }
+}
+.idx-stat {
+  padding: 32px 26px 28px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.idx-stat:last-child { border-right: none; }
+.idx-stat::after {
+  content: attr(data-i);
+  position: absolute; top: 12px; right: 14px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--muted); letter-spacing: 1.5px;
+}
+.idx-stat:hover { background: rgba(241,234,214,0.025); }
+.idx-stat .num {
+  font-family: var(--display);
+  font-size: clamp(48px, 6.4vw, 84px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.idx-stat .num small {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.idx-stat .lbl {
+  font-family: var(--mono); font-size: 11px;
+  color: var(--muted); margin-top: 18px;
+  letter-spacing: 2px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.idx-stat .lbl::before {
+  content:''; width: 6px; height: 6px;
+  background: var(--stat-color, var(--bone));
+}
+
+.idx-stat:nth-child(1) { --stat-color: var(--mint); }
+.idx-stat:nth-child(1) .num { color: var(--mint); }
+.idx-stat:nth-child(2) { --stat-color: var(--bone); }
+.idx-stat:nth-child(2) .num { color: var(--bone); }
+.idx-stat:nth-child(3) { --stat-color: var(--pop); }
+.idx-stat:nth-child(3) .num { color: var(--pop); }
+.idx-stat:nth-child(4) { --stat-color: var(--rose); }
+.idx-stat:nth-child(4) .num { color: var(--rose); }
+
+/* ─── SECTION TITLE ─── */
+.idx-sec-title {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px;
+  align-items: end;
+  margin-bottom: 40px;
+}
+.idx-sec-title h2 {
+  font-family: var(--display);
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--bone);
+}
+.idx-sec-title h2 em {
+  font-style: italic;
+  color: var(--mint);
+}
+.idx-sec-title h2 sup {
+  font-family: var(--mono); font-size: 0.32em;
+  vertical-align: super;
+  color: var(--hot); letter-spacing: 0;
+  font-weight: 500;
+  margin-left: 6px;
+}
+.idx-sec-title .line {
+  height: 1px; background: var(--border);
+  position: relative; bottom: 12px;
+}
+.idx-sec-title .count {
+  font-family: var(--mono);
+  font-size: 12px; color: var(--muted);
+  letter-spacing: 2px;
+}
+
+/* ─── MODULE CARDS ─── */
+.idx-cards {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-bottom: 80px;
+}
+@media (max-width: 1000px) {
+  .idx-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .idx-cards { grid-template-columns: 1fr; }
+}
+
+.idx-card {
+  grid-column: span 4;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 28px 26px 24px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  min-height: 280px;
+  transition: transform 0.25s cubic-bezier(.2,.8,.3,1.1), border-color 0.25s, background 0.3s;
+}
+
+/* layout rhythm: span widths */
+.idx-card.w-8 { grid-column: span 8; }
+.idx-card.w-7 { grid-column: span 7; min-height: 320px; }
+.idx-card.w-5 { grid-column: span 5; }
+.idx-card.w-12 { grid-column: span 12; min-height: 200px; flex-direction: row; align-items: center; gap: 36px; padding: 32px 36px; }
+
+@media (max-width: 1000px) {
+  .idx-card, .idx-card.w-8, .idx-card.w-7, .idx-card.w-5 { grid-column: span 1; }
+  .idx-card.w-12 { grid-column: span 2; flex-direction: column; align-items: stretch; gap: 16px; }
+}
+@media (max-width: 600px) {
+  .idx-card.w-12 { grid-column: span 1; }
+}
+
+/* top stripe + hover */
+.idx-card::before {
+  content:''; position: absolute;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: var(--cc, var(--mint));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.idx-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--cc, var(--mint));
+}
+.idx-card:hover::before { transform: scaleX(1); }
+
+/* corner triangle accent */
+.idx-card::after {
+  content:''; position: absolute;
+  top: 0; right: 0;
+  border-style: solid;
+  border-width: 0 22px 22px 0;
+  border-color: transparent var(--cc, var(--mint)) transparent transparent;
+  opacity: 0.18;
+  transition: opacity 0.3s;
+}
+.idx-card:hover::after { opacity: 0.45; }
+
+.idx-card-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2.5px;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+.idx-card-num b {
+  color: var(--cc, var(--mint));
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.idx-card-icon {
+  width: 64px; height: 64px;
+  margin-bottom: 22px;
+  color: var(--cc, var(--mint));
+  flex-shrink: 0;
+}
+.idx-card.w-12 .idx-card-icon { margin-bottom: 0; width: 80px; height: 80px; }
+.idx-card-icon svg { width: 100%; height: 100%; display: block; }
+
+.idx-card-body { flex-grow: 1; display: flex; flex-direction: column; }
+.idx-card.w-12 .idx-card-body { flex-grow: 1; }
+
+.idx-card h3 {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--bone);
+  margin-bottom: 12px;
+}
+.idx-card.w-7 h3, .idx-card.w-8 h3 { font-size: 30px; }
+.idx-card.w-12 h3 { font-size: 28px; margin-bottom: 8px; }
+.idx-card h3 em {
+  font-style: italic;
+  color: var(--cc, var(--mint));
+}
+.idx-card h3 .x {
+  font-style: italic;
+  color: var(--hot);
+  font-weight: 500;
+  padding: 0 4px;
+}
+
+.idx-card p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+.idx-card.w-7 p, .idx-card.w-8 p { font-size: 15px; max-width: 460px; }
+
+.idx-card-foot {
+  display: flex; justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+  margin-top: auto;
+}
+.idx-card.w-12 .idx-card-foot { border-top: none; padding-top: 0; }
+.idx-card-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--cc, var(--mint));
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.idx-card-arr {
+  width: 32px; height: 14px;
+  color: var(--cc, var(--mint));
+  transition: transform 0.22s;
+  flex-shrink: 0;
+}
+.idx-card:hover .idx-card-arr { transform: translateX(8px); }
+
+/* per-card colour theme */
+.idx-card.c-1 { --cc: var(--mint); }
+.idx-card.c-2 { --cc: var(--hot); }
+.idx-card.c-3 { --cc: var(--pop); }
+.idx-card.c-4 { --cc: var(--rose); }
+.idx-card.c-5 { --cc: var(--iris); }
+.idx-card.c-6 { --cc: var(--teal); }
+
+/* ─── BOTTOM CALLOUT (light contrast block) ─── */
+.idx-callout {
+  background: var(--bone);
+  color: var(--ink);
+  padding: 56px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 36px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.idx-callout::before {
+  content:''; position: absolute;
+  bottom: -120px; left: -100px;
+  width: 320px; height: 320px;
+  background: var(--hot); border-radius: 50%;
+  opacity: 0.18;
+}
+.idx-callout::after {
+  content:''; position: absolute;
+  top: -50px; right: 28%;
+  width: 120px; height: 120px;
+  border: 4px solid var(--iris);
+  transform: rotate(45deg);
+  opacity: 0.5;
+}
+.idx-callout-deco {
+  position: absolute; top: 32px; right: 36px;
+  font-family: var(--mono); font-size: 10px;
+  color: #555; letter-spacing: 2px;
+  display: flex; gap: 8px; align-items: center;
+}
+.idx-callout-deco::before {
+  content:''; width: 18px; height: 1px; background: var(--ink);
+}
+.idx-callout h3 {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  position: relative; z-index: 1;
+  max-width: 600px;
+}
+.idx-callout h3 em { font-style: italic; color: var(--hot); }
+.idx-callout h3 .ul {
+  text-decoration: underline;
+  text-decoration-color: var(--iris);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 4px;
+}
+.idx-callout p {
+  font-family: var(--mono); font-size: 11px;
+  color: #444; margin-top: 14px;
+  letter-spacing: 1.8px;
+  position: relative; z-index: 1;
+  text-transform: uppercase;
+}
+.idx-callout-cta {
+  background: var(--ink); color: var(--bone);
+  padding: 18px 26px;
+  font-family: var(--display); font-weight: 800;
+  font-size: 14px; letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border: none; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 14px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative; z-index: 1;
+}
+.idx-callout-cta:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--hot);
+}
+.idx-callout-cta .arr { width: 20px; height: 12px; }
+
+@media (max-width: 850px) {
+  .idx-callout { grid-template-columns: 1fr; padding: 36px 28px; }
+}
+
+/* fade-in entrance for the index */
+@keyframes idxRise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#home .idx > * { animation: idxRise 0.7s ease-out backwards; }
+#home .idx > *:nth-child(1) { animation-delay: 0.05s; }
+#home .idx > *:nth-child(2) { animation-delay: 0.15s; }
+#home .idx > *:nth-child(3) { animation-delay: 0.30s; }
+#home .idx > *:nth-child(4) { animation-delay: 0.40s; }
+#home .idx > *:nth-child(5) { animation-delay: 0.50s; }
+#home .idx > *:nth-child(6) { animation-delay: 0.60s; }
 </style>
 </head>
 <body>
@@ -201,55 +788,280 @@ footer span { color: var(--accent); }
 <!-- HOME -->
 <div id="home" class="section active">
   <div class="container">
-    <div class="hero">
-      <h1>Cairo Smart<br><em>Transportation</em> System</h1>
-      <p>An intelligent routing platform using ML-based traffic prediction, Dijkstra, A*, MST, Dynamic Programming, and Greedy algorithms on a real Cairo road network.</p>
-    </div>
+    <div class="idx">
 
-    <div class="stats-row">
-      <div class="stat-box"><div class="stat-num">28</div><div class="stat-lbl">Graph Nodes (Districts)</div></div>
-      <div class="stat-box"><div class="stat-num">43</div><div class="stat-lbl">Road Edges</div></div>
-      <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Algorithms Implemented</div></div>
-      <div class="stat-box"><div class="stat-num">168</div><div class="stat-lbl">ML Training Samples</div></div>
-    </div>
+      <!-- METADATA STRIP -->
+      <div class="idx-meta">
+        <span><b>FILE</b> &nbsp;01 &nbsp;/ &nbsp;Overview</span>
+        <div class="dash"></div>
+        <span class="geo">Cairo · 30.04°N 31.24°E</span>
+        <span class="live"><b>v2.0 — LIVE</b></span>
+      </div>
 
-    <div class="cards">
-      <div class="card" onclick="showTab('race')">
-        <div class="card-icon">⚡</div>
-        <h3>Dijkstra vs A* Race</h3>
-        <p>Watch both algorithms find the shortest path simultaneously. See which explores fewer nodes and finds the route faster.</p>
-        <div class="pill">SIDE-BY-SIDE ANIMATION</div>
+      <!-- HERO -->
+      <section class="idx-hero">
+
+        <!-- decorative shapes -->
+        <div class="idx-shape s-circle"></div>
+        <div class="idx-shape s-ring"></div>
+        <svg class="idx-shape s-tri" viewBox="0 0 64 56" fill="currentColor">
+          <polygon points="32,4 60,52 4,52" fill="none" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <svg class="idx-shape s-plus" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="3">
+          <line x1="22" y1="4" x2="22" y2="40"/>
+          <line x1="4" y1="22" x2="40" y2="22"/>
+        </svg>
+        <svg class="idx-shape s-bars" viewBox="0 0 72 72" fill="currentColor">
+          <rect x="8"  y="44" width="10" height="20"/>
+          <rect x="22" y="32" width="10" height="32"/>
+          <rect x="36" y="20" width="10" height="44"/>
+          <rect x="50" y="36" width="10" height="28"/>
+        </svg>
+        <svg class="idx-shape s-zigzag" viewBox="0 0 96 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="miter">
+          <polyline points="2,16 14,2 26,16 38,2 50,16 62,2 74,16 86,2 94,9"/>
+        </svg>
+
+        <div class="idx-eyebrow">CSE112 — Design &amp; Analysis of Algorithms</div>
+
+        <h1 class="idx-headline">
+          <span class="row">Twenty-eight</span>
+          <span class="row"><em>districts</em>.</span>
+          <span class="row">Forty-three roads.</span>
+          <span class="row"><span class="mint">One</span> smart engine.</span>
+        </h1>
+
+        <div class="idx-hero-bottom">
+          <p class="idx-blurb">
+            A real-world routing platform built on the Cairo road network — combining <b>ML-driven traffic forecasting</b> with five classical graph algorithms <i>(Dijkstra, A*, Kruskal, DP, Greedy)</i> to find smarter, faster paths through the city, hour by hour.
+          </p>
+          <div class="idx-cta-stack">
+            <button class="idx-cta-btn" onclick="showTab('race')">
+              Watch the race
+              <svg class="arr" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square">
+                <path d="M0 6 H 18"/><path d="M13 1 L 18 6 L 13 11"/>
+              </svg>
+            </button>
+            <span class="idx-cta-foot">Dijkstra × A* — side by side</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="idx-stats">
+        <div class="idx-stat" data-i="↳ 01">
+          <div class="num">28<small>nodes</small></div>
+          <div class="lbl">Districts in graph</div>
+        </div>
+        <div class="idx-stat" data-i="↳ 02">
+          <div class="num">43<small>edges</small></div>
+          <div class="lbl">Road connections</div>
+        </div>
+        <div class="idx-stat" data-i="↳ 03">
+          <div class="num">5<small>algos</small></div>
+          <div class="lbl">Algorithms shipping</div>
+        </div>
+        <div class="idx-stat" data-i="↳ 04">
+          <div class="num">168<small>rows</small></div>
+          <div class="lbl">ML training samples</div>
+        </div>
+      </section>
+
+      <!-- MODULES TITLE -->
+      <div class="idx-sec-title">
+        <h2>The <em>six</em> modules<sup>★</sup></h2>
+        <div class="line"></div>
+        <span class="count">06 / 06</span>
       </div>
-      <div class="card" onclick="showTab('ml')">
-        <div class="card-icon">🤖</div>
-        <h3>ML Traffic Forecast</h3>
-        <p>GradientBoosting + RandomForest trained on 168 temporal samples. Predict congestion level for any hour of the week.</p>
-        <div class="pill">scikit-learn · GBR + RFC</div>
+
+      <!-- MODULE CARDS -->
+      <section class="idx-cards">
+
+        <!-- Card 1: Algorithm Race (large feature) -->
+        <article class="idx-card w-7 c-1" onclick="showTab('race')">
+          <div class="idx-card-num"><b>01</b>Pathfinding</div>
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <circle cx="8" cy="32" r="4" fill="currentColor"/>
+              <path d="M12 32 Q 26 12, 40 14 T 56 16" stroke-dasharray="3 4"/>
+              <path d="M12 32 Q 22 50, 36 50 T 56 48"/>
+              <circle cx="56" cy="16" r="4" fill="currentColor"/>
+              <circle cx="56" cy="48" r="4" fill="none"/>
+              <circle cx="28" cy="20" r="1.8" fill="currentColor" opacity="0.5"/>
+              <circle cx="36" cy="48" r="1.8" fill="currentColor" opacity="0.5"/>
+              <circle cx="46" cy="14" r="1.8" fill="currentColor" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <h3>Dijkstra <span class="x">vs</span> <em>A*</em>.</h3>
+            <p>Watch both algorithms search for the shortest path at the same time. See how A*'s heuristic guides it more directly than Dijkstra's blind exploration — step by step, node by node.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">Side-by-side animation</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: ML Forecast -->
+        <article class="idx-card w-5 c-2" onclick="showTab('ml')">
+          <div class="idx-card-num"><b>02</b>Machine Learning</div>
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+              <line x1="6" y1="56" x2="58" y2="56" stroke-width="1.8"/>
+              <rect x="10" y="42" width="7" height="14" fill="currentColor" opacity="0.35" stroke="none"/>
+              <rect x="21" y="32" width="7" height="24" fill="currentColor" opacity="0.55" stroke="none"/>
+              <rect x="32" y="22" width="7" height="34" fill="currentColor" opacity="0.75" stroke="none"/>
+              <rect x="43" y="36" width="7" height="20" fill="currentColor" stroke="none"/>
+              <path d="M10 38 Q 22 22, 35 18 T 58 32"/>
+              <circle cx="13" cy="38" r="2.3" fill="currentColor"/>
+              <circle cx="35" cy="18" r="2.3" fill="currentColor"/>
+              <circle cx="56" cy="32" r="2.3" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <h3>Traffic <em>forecast</em>.</h3>
+            <p>GradientBoosting + RandomForest trained on 168 temporal samples — predict congestion for any hour, any day.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">scikit-learn · GBR + RFC</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Network Map -->
+        <article class="idx-card c-3" onclick="showTab('network')">
+          <div class="idx-card-num"><b>03</b>Visualisation</div>
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="14" y1="14" x2="32" y2="32"/>
+              <line x1="32" y1="32" x2="50" y2="14"/>
+              <line x1="32" y1="32" x2="14" y2="50"/>
+              <line x1="32" y1="32" x2="50" y2="50"/>
+              <line x1="14" y1="14" x2="50" y2="14"/>
+              <line x1="14" y1="50" x2="50" y2="50"/>
+              <circle cx="14" cy="14" r="4" fill="currentColor" stroke="none"/>
+              <circle cx="50" cy="14" r="4" fill="currentColor" stroke="none"/>
+              <circle cx="32" cy="32" r="5" fill="currentColor" stroke="none"/>
+              <circle cx="14" cy="50" r="4" fill="currentColor" stroke="none"/>
+              <circle cx="50" cy="50" r="4" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <h3>Road <em>network</em>.</h3>
+            <p>Interactive map of 28 districts, hospitals, government buildings and 43 road connections.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">Live graph</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: MST -->
+        <article class="idx-card c-4">
+          <div class="idx-card-num"><b>04</b>Spanning Tree</div>
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="32" y1="8"  x2="32" y2="22"/>
+              <line x1="32" y1="22" x2="14" y2="36"/>
+              <line x1="32" y1="22" x2="50" y2="36"/>
+              <line x1="14" y1="36" x2="6"  y2="54"/>
+              <line x1="14" y1="36" x2="22" y2="54"/>
+              <line x1="50" y1="36" x2="42" y2="54"/>
+              <line x1="50" y1="36" x2="58" y2="54"/>
+              <circle cx="32" cy="8"  r="3.5" fill="currentColor" stroke="none"/>
+              <circle cx="32" cy="22" r="3"   fill="currentColor" stroke="none"/>
+              <circle cx="14" cy="36" r="3"   fill="currentColor" stroke="none"/>
+              <circle cx="50" cy="36" r="3"   fill="currentColor" stroke="none"/>
+              <circle cx="6"  cy="54" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="22" cy="54" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="42" cy="54" r="2.5" fill="currentColor" stroke="none"/>
+              <circle cx="58" cy="54" r="2.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <h3>Kruskal's <em>MST</em>.</h3>
+            <p>Modified MST that prioritises critical infrastructure — hospitals, government HQs and fire stations.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">Priority-weighted</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5: Greedy -->
+        <article class="idx-card c-5">
+          <div class="idx-card-num"><b>05</b>Greedy</div>
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4">
+              <polygon points="22,8 42,8 56,22 56,42 42,56 22,56 8,42 8,22"/>
+              <circle cx="32" cy="20" r="4" fill="currentColor" stroke="none"/>
+              <circle cx="32" cy="32" r="4" fill="currentColor" stroke="none" opacity="0.45"/>
+              <circle cx="32" cy="44" r="4"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <h3>Signal <em>optimiser</em>.</h3>
+            <p>Greedy largest-queue selection with starvation prevention and emergency vehicle preemption.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">Anti-starvation</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6: DP Knapsack — full-width horizontal -->
+        <article class="idx-card w-12 c-6">
+          <div class="idx-card-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="6" y="6" width="52" height="52"/>
+              <rect x="6"  y="6"  width="26" height="26" fill="currentColor" opacity="0.22" stroke="none"/>
+              <rect x="32" y="6"  width="26" height="52" fill="currentColor" opacity="0.5"  stroke="none"/>
+              <rect x="6"  y="32" width="13" height="26" fill="currentColor" opacity="0.7"  stroke="none"/>
+              <line x1="19" y1="32" x2="32" y2="32"/>
+              <line x1="19" y1="32" x2="19" y2="58"/>
+              <line x1="6"  y1="6"  x2="58" y2="6"  stroke-width="1"/>
+              <line x1="6"  y1="58" x2="58" y2="58" stroke-width="1"/>
+            </svg>
+          </div>
+          <div class="idx-card-body">
+            <div class="idx-card-num"><b>06</b>Dynamic Programming</div>
+            <h3><em>0/1 Knapsack</em> for road maintenance.</h3>
+            <p>Maximises total maintenance benefit across the network within a fixed municipal budget — picking which roads to repair when you can't repair them all.</p>
+            <div class="idx-card-foot">
+              <span class="idx-card-tag">DP · O(n × budget)</span>
+              <svg class="idx-card-arr" viewBox="0 0 32 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+                <path d="M0 7 H 28"/><path d="M22 1 L 28 7 L 22 13"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- BOTTOM CALLOUT -->
+      <div class="idx-callout">
+        <div class="idx-callout-deco">END OF OVERVIEW</div>
+        <div>
+          <h3>Built in <em>Cairo</em>,<br>routed through <span class="ul">Cairo</span>.</h3>
+          <p>CSE112 · Design &amp; Analysis of Algorithms · Spring 2026</p>
+        </div>
+        <button class="idx-callout-cta" onclick="showTab('network')">
+          See the map
+          <svg class="arr" viewBox="0 0 20 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square">
+            <path d="M0 6 H 18"/><path d="M13 1 L 18 6 L 13 11"/>
+          </svg>
+        </button>
       </div>
-      <div class="card" onclick="showTab('network')">
-        <div class="card-icon">🗺️</div>
-        <h3>Cairo Road Network</h3>
-        <p>Interactive visualization of all 28 districts, hospitals, government buildings, and 43 road connections.</p>
-        <div class="pill">LIVE GRAPH VISUALIZATION</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌲</div>
-        <h3>Kruskal's MST</h3>
-        <p>Modified MST that prioritizes critical infrastructure connections — hospitals, government HQs, fire stations.</p>
-        <div class="pill">PRIORITY-WEIGHTED MST</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🚦</div>
-        <h3>Greedy Signal Optimization</h3>
-        <p>Traffic signal controller using greedy largest-queue selection with starvation prevention and emergency preemption.</p>
-        <div class="pill">GREEDY + ANTI-STARVATION</div>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎒</div>
-        <h3>DP Road Maintenance</h3>
-        <p>0/1 Knapsack optimization to maximize road maintenance benefit within a fixed budget constraint.</p>
-        <div class="pill">DYNAMIC PROGRAMMING</div>
-      </div>
+
     </div>
   </div>
 </div>
