@@ -1,5 +1,5 @@
 # Cairo Smart Transportation System
-### Abdelrahman Mahmoud · CSE112 — Design and Analysis of Algorithms · Alamein International University
+### Abdelrahman Emad · CSE112 — Design and Analysis of Algorithms · Alamein International University
 
 A complete transportation management system for Greater Cairo implementing five core algorithms, ML-based traffic prediction, an interactive PyQt5 GUI, and a deployable web visualizer.
 
@@ -161,7 +161,7 @@ The cyclic hour encoding lets the model understand that 23:00 and 00:00 are adja
 ```bash
 git init && git add .
 git commit -m "Cairo transport system"
-git remote add origin https://github.com/6sangoku9/cairo-transport.git
+git remote add origin https://github.com/dsrAce/cairo-transport.git
 git push -u origin main
 # Settings → Pages → main / root → Save
 # Live at: https:/6sangoku9.github.io/cairo-transport
